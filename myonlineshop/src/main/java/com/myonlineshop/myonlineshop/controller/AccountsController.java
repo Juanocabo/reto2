@@ -30,7 +30,7 @@ public class AccountsController {
     AccountService accountService;
     @Autowired
     AccountRepository accountRepository;
-    @GetMapping(value = "")
+    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Object> listar(){
         List<Account> accs = accountService.getAccounts();
         return ResponseEntity.status(HttpStatus.OK).body(accs);
@@ -47,23 +47,23 @@ public class AccountsController {
         return new ResponseEntity<>(accountService.create(newAcc), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{pid}")
-    public ResponseEntity<Account> update(@PathVariable("pid") @Min(1) Long id, @RequestBody @Valid Account account) {
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Account> update(@PathVariable("id") @Min(1) Long id, @RequestBody @Valid Account account) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.updateAccount(id, account));
     }
 
-    @DeleteMapping(value = "/{pid}")
-    public ResponseEntity delete(@PathVariable("pid") @Min(1)Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity delete(@PathVariable("id") @Min(1)Long id) {
         accountService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/addBalance/{aid}")
-    public ResponseEntity addBalance(@PathVariable("aid") @Min(1) Long id,@RequestParam Long cid,@RequestParam int mount){
+    @PutMapping("/addBalance/{id}")
+    public ResponseEntity addBalance(@PathVariable("id") @Min(1) Long id,@RequestParam Long cid,@RequestParam int mount){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.addBalance(id, mount,cid));
     }
-    @PutMapping("/withdrawBalance/{aid}")
-    public ResponseEntity withdrawBalance(@PathVariable("aid") @Min(1)Long id,@RequestParam Long cid,@RequestParam int mount){
+    @PutMapping("/withdrawBalance/{id}")
+    public ResponseEntity withdrawBalance(@PathVariable("id") @Min(1)Long id,@RequestParam Long cid,@RequestParam int mount){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.withdrawBalance(id, mount,cid));
     }
     @DeleteMapping(value = "/delete/{cid}")
