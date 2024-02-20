@@ -1,0 +1,35 @@
+spring:
+  application.name: accountsService
+  profiles.active: test
+
+
+
+products.openapi:
+  dev-url: http://www.dev.accountsService.es
+  prod-url: http://www.prod.accountsService.es
+
+---
+spring:
+  application.name: accountsServiceTest
+  profiles: test
+  sql.init.mode: always
+  datasource:
+    url: "jdbc:mysql://localhost/accounts_db"
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: account_user
+    password: acc123
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+      generate-ddl: true
+    defer-datasource-initialization: true
+
+server:
+  port: 9900
+
+#debug: true
+logging:
+  level.root: INFO
+  file.path: /tmp/logs
