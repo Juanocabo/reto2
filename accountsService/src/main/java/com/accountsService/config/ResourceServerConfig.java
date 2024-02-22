@@ -10,10 +10,8 @@ public class ResourceServerConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/accounts/**").authenticated()
                 .mvcMatchers("/accounts/withdrawBalance/**").authenticated()
                 .mvcMatchers("/accounts/addBalance/**").authenticated()
-                .mvcMatchers("/accounts/**").hasAuthority("SCOPE_accounts.client")
                 .mvcMatchers("/accounts/addBalance/**").hasAuthority("SCOPE_accounts.client")
                 .mvcMatchers("/accounts/withdrawBalance/**").hasAuthority("SCOPE_accounts.client")
                 .and()

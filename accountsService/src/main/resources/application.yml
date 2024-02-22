@@ -65,4 +65,8 @@ spring:
 server:
   port: 9900
 
+logging:
+  level.root: DEBUG
+  file.path: /tmp/logs
+
 ---
