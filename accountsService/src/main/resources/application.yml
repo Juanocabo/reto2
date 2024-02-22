@@ -1,8 +1,8 @@
 spring:
   application.name: accountsService
-  profiles.active: dev
+  profiles.active: prod
 
-
+spring.security.oauth2.resourceserver.jwt.issuer-uri: http://auth-server:9000
 
 products.openapi:
   dev-url: http://www.dev.accountsService.es
@@ -61,5 +61,8 @@ spring:
       ddl-auto: update
       generate-ddl: true
     defer-datasource-initialization: true
-server.port: 9943
+
+server:
+  port: 9900
+
 ---
