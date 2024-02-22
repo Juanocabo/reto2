@@ -8,6 +8,9 @@ products.openapi:
   dev-url: http://www.dev.accountsService.es
   prod-url: http://www.prod.accountsService.es
 
+spring.mvc.pathmatch.matching-strategy: ANT_PATH_MATCHER
+app.jwt.secret: SECRET-KEY-VALUE
+
 ---
 spring:
   application.name: accountsServiceDev
